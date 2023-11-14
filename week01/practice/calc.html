@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculate</title>
+    <style>
+        .title{
+            color: blueviolet;
+            height: 50px;
+            line-height: 50px;
+            margin-left: 100px;
+        }
+        .num1{
+            height: 30px;
+            margin: 5px;
+        }
+        .num2{
+            height: 30px;
+            margin: 5px;
+        }
+        button{
+            width: 50px;
+            margin: 6px;
+        }
+        .result{
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="big_box">
+        <div class="title">计算器</div>
+        <div class="num1">数字一：<input type="" id="input1"></div>
+        <div class="num2">数字二：<input type="" id="input2"></div>
+        <button onclick="add()">相加</button><button onclick="sub()">相减</button><button onclick="mul()">相乘</button><button onclick="div()">相除</button>
+        <div class="result">结果为：<input type="" id="result"></div>
+    </div>
+    <script>
+        function checkNumber(event){
+            if((event.keyCode<48||event.keyCode>57)&&event.keyCode!=8){
+                event.preventDefault()
+            }
+        }
+        function add(){
+            let num1=parseFloat(document.querySelector("#input1").value) 
+            let num2=parseFloat(document.querySelector("#input2").value) 
+            document.querySelector("#result").value=num1+num2
+        }
+        function sub(){
+            let num1=parseFloat(document.querySelector("#input1").value) 
+            let num2=parseFloat(document.querySelector("#input2").value) 
+            document.querySelector("#result").value=num1-num2
+
+        }
+        function mul(){
+            let num1=parseFloat(document.querySelector("#input1").value) 
+            let num2=parseFloat(document.querySelector("#input2").value) 
+            document.querySelector("#result").value=num1*num2
+
+        }
+        function div(){
+            let num1=parseFloat(document.querySelector("#input1").value) 
+            let num2=parseFloat(document.querySelector("#input2").value) 
+            if(num2 == 0){
+                alert("分母不能为0")
+                return
+            }
+            document.querySelector("#result").value=num1/num2
+        }
+        document.querySelector("#input1").addEventListener("keydown",checkNumber)
+        document.querySelector("#input2").addEventListener("keydown",checkNumber)
+    </script>
+</body>
+</html>

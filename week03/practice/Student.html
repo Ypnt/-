@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function Student(name,age,gender){
+        this.age=age
+        this.name=name
+        this.gender=gender
+    }
+    Student.prototype.study=function(){
+        console.log("我是"+this.name+"我正在学习")
+    }
+    class Teacher{
+        constructor(name,age,gender){
+            this.age=age
+            this.name=name
+            this.gender=gender
+        }
+        teach(){
+            console.log("我是"+this.name+"我正在教学")
+        }
+    }
+
+    let student=new Student("张三",20,"男")
+    student.study()
+
+    let teacher=new Teacher("李四",30,"男")
+    teacher.teach()
+</script>
+<body>
+    
+</body>
+</html>

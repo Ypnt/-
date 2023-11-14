@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let obj={}
+    // Object.defineProperty(obj,"age",{
+    //     _age:0,
+    //     get:function(){
+    //         return this._age
+    //     },
+    //     set:function(val){
+    //         if(Number.isInteger(val)){
+    //             if(val>120||val<0)val=0
+    //             this._age=val
+    //         }
+    //     }
+    // })
+    // obj.age=160
+    // console.log(obj)
+
+    let obj1=new Proxy(obj,{
+        set:function(obj,prop,val){
+            if(prop==="age"){
+                if(!Number.isInteger(val)){
+                    throw new TypeError("is not an integer")
+                }
+                obj.age=val
+            }
+        }
+    })
+    obj1.age=1
+    console.log(obj)
+</script>
+<body>
+    
+</body>
+</html>

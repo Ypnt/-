@@ -1,0 +1,334 @@
+
+@font-face {
+    font-family: "Ionicons";
+    src: url("./ionicons.ttf?v=2.0.0");
+}
+*{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+a:active {
+    text-decoration: none;
+}
+.list{
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    width: 100%;
+    z-index: 1;
+    background-color: #ffffff;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    display: none;
+}
+.list li{
+    display: flex;
+    align-items: center;
+    height: 30px;
+    padding-left: 8px;
+    font-size: 12px;
+}
+.list li:hover{
+    background-color: #e8f3ff;
+    cursor: pointer;
+}
+/* 类型选择栏 */
+.type{
+    position: relative;
+    display: flex;
+    width: 66px;
+    height: 24px;
+    background-color: #e8f3ff;
+    align-items: center;
+}
+.type:hover{
+    cursor: pointer;
+}
+.type span{
+    color: #1e80ff;
+    margin-left: 8px;
+    border-radius: 2px;
+    font-size: 12px;
+}
+.type .arrow{
+    display: flex;
+    width: 30px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+}
+.main{
+    display: flex;
+    background-color: #f4f5f5;
+    justify-content: center;
+    margin: auto;
+    padding: 20px;
+}
+/* 左边样式 */
+.left{
+    display: flex;
+    background-color: #ffffff;
+    margin-right: 9.6px;
+    flex-direction: column;
+}
+/* 左导航样式 */
+.left .navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+    border-radius: 2px 2px 0 0;
+    border-bottom: 1px solid #e5e6eb;
+}
+.left .navbar .logo{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 52px;
+}
+.left .navbar .logo img{
+    margin: 0 12px 0 12px;
+    width: 28px;
+    height: 28px;
+    border-radius:2px;
+}
+.left .navbar .type{
+    margin-right: 132.24px;
+    width: 82px;
+    height: 24px;
+}
+.left .navbar .type span{
+    width: 49px;
+    color: #1e80ff;
+    margin: 0 5px 0 8px;
+    font-size: 12px;
+}
+.left .navbar .type .arrow{
+    display: flex;
+    align-items: center;
+    width: 10px;
+    margin-right: 10px;
+    transition:all 200ms;
+}
+.left .navbar .selector{
+    display: flex;
+    align-items: center;
+}
+.left .navbar .selector .active{
+    display: flex;
+    align-items: center;
+    width: 69.2px;
+    height: 44px;
+    margin: 0 1.2px;
+    padding: 0 9.6px;
+}
+.left .navbar .selector .active:hover{
+    cursor: pointer;
+}
+.left .navbar .selector .divider{
+    width: 1px;
+    height: 14px;
+    background-color: #e5e6eb;
+}
+.left .navbar .selector .latest{
+    color: #4e5969;
+    width: 47.2px;
+    height: 44px;
+    margin: 0 1.2px;
+    padding: 0 9.6px;
+    line-height: 44px;
+}
+.left .navbar .selector .latest:hover{
+    cursor: pointer;
+}
+
+
+/* 左数据样式 */
+.dataL li{
+    padding: 8px 0 4px 0;
+}
+.dataL li .box{
+    padding: 8px 20px;
+}
+.dataL li .box:hover{
+    background-color: #e8f3ff;
+}
+.dataL li .divUp{
+    width: 398.04px;
+    color: #000000;
+    font-size: 14px;
+    line-height: 22px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+}
+.dataL li .divDown{
+    display: flex;
+    margin-top: 4px;
+    justify-content: space-between;
+}    
+.dataL .divTag{
+    font-size: 12px;
+    line-height: 18px;
+    color: #86909c;
+}
+.dataL .divDot{
+    width: 2px;
+    height: 2px;
+    margin: 0 6px;
+    font-size: 12px;
+    line-height: 18px;
+    background-color: #86909c;
+}
+.dataL .divTime{
+    padding-left: 10px;
+}
+.dataL li .divDownL{
+    display: flex;
+    align-items: center;
+}
+.dataL li .divDownR{
+    display: flex;
+    align-items: center;
+}
+
+/* 右边样式 */
+.right{
+    min-width: 600px;
+    width: 60%;
+    display: flex;
+    background-color: #ffffff;
+    margin-left: 6.396px;
+    flex-direction: column;
+}
+/* 右导航样式 */
+.right .navbar{
+    display: flex;
+    margin-right: 9.6px;
+    height: 44px;
+    border-radius: 2px 2px 0 0;
+    border-bottom: 1px solid #e5e6eb;
+    align-items: center;
+    justify-content: space-between;
+}
+.right .choose{
+    display: flex;
+}
+.right .navbar .logo{
+    width: 153.36px;
+    display: flex;
+    align-items: center;
+}
+.right .navbar .logo img{
+    margin: 0 12px;
+}
+.right .navbar .logo span{
+    width: 55.913px;
+    height: 16.2px;
+    margin: 0 6px 0 0;
+    font-size: 16.2px;
+    line-height: 16.2px;
+}
+.right .navbar .logo .arrow{
+    display: flex;
+    align-items: center;
+    width: 12px;
+    height: 18px;
+    transition:all 200ms
+}
+.right .navbar .type .arrow{
+    transition:all 200ms
+}
+.right .navbar .two{
+    margin-left: 16px;
+}   
+.right .navbar .three{
+    margin:0 16px;
+    width: auto;
+}
+/* 右数据样式 */
+.dataR{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 12px;
+    width: 100%;
+}
+.dataR li{
+    width: 48%;
+    padding:8px 8px 0 0 ;
+    height: 126px;
+} 
+
+.dataR .box{
+    padding: 8px 12px;
+    background-color: #f4f5f5;
+}
+.dataR .box:hover{
+    background-color: #e8f3ff;
+}
+.dataR .divUp{
+    height: 22px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #1e80ff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dataR .divMid{
+    height: 44px;
+}
+.dataR .midText{
+    font-size: 13px;
+    color: #4E5969;
+    display: -webkit-box;  /*弹性伸缩盒子*/
+    -webkit-box-orient: vertical;/*垂直排列*/
+    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 2;
+    overflow: hidden;   /*溢出隐藏*/
+    text-overflow: ellipsis;   /*省略号代替*/
+}
+.dataR .divDown{
+    height: 20px;
+    font-size: 12px;
+    margin-top: 8px;
+    color: #4E5969;
+    flex-wrap: nowrap;
+}
+.dataR .divStar{
+    font-family: Ionicons;
+    margin-right: 25px;
+}
+.dataR .divStar:before{
+    content: "\f2fc";
+}
+.dataR .divFork{
+    font-family: Ionicons;
+    margin-right: 25px;
+}
+.dataR .divFork:before{
+    content: "\f2c0";
+}
+.dataR .divLang i{
+    display: inline-flex;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}

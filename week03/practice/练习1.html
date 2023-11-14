@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        arr=[1,2,3,4,5,6,7,8]
+        function process(arr){
+            _arr=arr.filter(function(item){
+                return item%2===0;
+            })
+            return _arr.join('|')
+        }
+
+        function sum(arr){
+            return arr.reduce((sum,cur)=>sum+cur,0)
+        }
+
+        function sum2(arr){
+            return arr.reduce((sum,cur)=>sum+cur,0)
+        }
+
+        console.log(sum(arr))
+        console.log(sum2(arr))
+        console.log(process(arr))
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

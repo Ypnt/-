@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 消除默认样式 */
+        *{
+            margin: 0px;
+            padding: 0px;
+            text-decoration: none;
+        }
+        /* 主窗口背景色，宽度 */
+        .main{
+            margin: 0 auto;
+            width: 500px;
+            background-color: #d53c34;
+        }
+        /* 表头“排行榜”样式 */
+        .title{
+            font-size: 20px;
+            text-align: center;
+            line-height: 40px;
+            height: 40px;
+            color: #ffffff;
+        }
+        /* 选择样式 */
+        .choose{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 0px 10px 0px;
+        }
+        .choose span{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 45px;
+            width: 45%;
+            color: #ffffff;
+            background-color: black;
+        }
+        .choose .b1{
+            background-color: #ac312a;
+            border-radius: 10px 0 0 10px;
+        }
+        .choose .b2{
+            background-color: #bd372e;
+            border-radius: 0 10px 10px 0;
+        }
+        /* 选择中的小图片样式 */
+        .choose span img{
+            height: 50%;
+        }
+
+
+        /* 内容样式 */
+        /* 上 */
+        .body .up{
+            display: flex;
+            align-items: center;
+            border-radius: 20px 20px 0 0;
+            height: 50px;
+            background-color: #ffffff;
+        }
+        .body .up span{
+            line-height: 25px;
+            text-align: center;
+            border-radius:5px;
+            width: 60px;
+            height: 25px;
+            margin-left: 30px;
+            background-color: #d53c34;
+            color: #ffffff;
+            font-size: 16px;
+        }
+        /* 下 */
+        .body .down{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            background-color: #ececec;
+        }
+        .body .down div{
+            background-color: #ffffff;
+            border-radius: 10px;
+            width: 85%;
+            height: 230px;
+            margin-top: 20px;
+            padding: 20px;
+        }
+        /* rank图片样式 */
+        .body .down .rank{
+            position: absolute;
+            width: 50px;
+            z-index: 1;
+        }
+        /* 文字加粗 */
+        .body .down p{
+            font-weight:bold;
+        }
+        /* 第二个盒子不触底 */
+        .body .down .top2{
+            margin-bottom: 20px;
+        }
+        /* 设置图片样式 */
+        .body .down div .pic{
+            border-radius: 10px;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <!-- 头部 -->
+        <div class="head">
+            <p class="title">排行榜</p>
+            <!-- 导航栏 -->
+            <div class="choose">
+                <span class="b1">
+                    <img src="./img/icon_article.webp" alt="">
+                    &ensp;好文精选
+                </span>
+                <span class="b2">
+                    <img src="./img/icon_hot.webp" alt="">
+                    &ensp;热门资讯
+                </span>
+            </div>
+        </div>
+        <!-- 身体 -->
+        <div class="body">
+            <div class="up">
+                <span>文章</span>
+            </div>
+            <div class="down">
+                <div class="top1">
+                    <img src="img/rank-top1.png" class="rank" alt="">
+                    <img src="img/pic-1.jpg" class="pic" alt="">
+                    <p>花小钱解决大问题</p>
+                </div>
+                <div class="top2">
+                    <img src="img/rank-top2.png" class="rank" alt="">
+                    <img src="img/pic-2.jpg" class="pic" alt="">
+                    <p>微信立减金</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

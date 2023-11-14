@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QQ音乐</title>
+</head>
+<style>
+    /* 清除系统样式 */
+    * {
+        margin: 0px;
+        padding: 0px;
+        text-decoration: none;
+        list-style: none;
+    }
+
+    .bigBox {
+        padding: 5px 70px 0 70px;
+        background: #f6f6f6;
+    }
+
+    /* logo */
+    .title {
+        align-items: center;
+        margin: 17px;
+    }
+
+    /* 按钮排列方式 */
+    button {
+        border: none;
+    }
+
+    .head {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+    }
+
+    /* 按钮的样式 */
+    .choose {
+        margin: 20px 10px 20px 10px;
+        width: 50px;
+        height: 30px;
+        text-align: center;
+        background-color: #f6f6f6f6;
+        font-size: 100%;
+    }
+
+    .choose:hover {
+        color: #62bf82;
+    }
+
+    /* 专辑排列方式 */
+    .albumBox {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+    }
+
+    /* 专辑信息样式 */
+    .album {
+        width: 230px;
+        margin: 10px;
+    }
+
+    p {
+        margin: 0px;
+    }
+
+    .album .lineOne {
+        color: #000000;
+        font-size: 16px;
+    }
+
+    .album .lineTwo {
+        color: #999999;
+        font-size: 16px;
+    }
+
+    /* 删除按钮样式 */
+    .dlt {
+        opacity: 0;
+        width: 30%;
+        height: 30%;
+        border-radius: 50%;
+        transition: opacity 1s;
+        position: absolute;
+        background-color: transparent;
+        background-size: 100% 100%;
+        top: 35%;
+        left: 35%;
+    }
+
+    .dlt:hover {
+        opacity: 0.5;
+    }
+</style>
+<!-- 引入所需要的数据 -->
+<script src="./js/data.js"></script>
+
+<body>
+    <div class="bigBox">
+        <div class="title">
+            <img class="logo" src="./assets/logo.png" alt="加载失败">
+        </div>
+        <div class="main">
+            <!-- 按钮box -->
+            <div class="head">
+            </div>
+            <!-- 专辑box -->
+            <div class="albumBox">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    console.log('数据列表：', DataList)
+    console.log('地区列表：', AreaList) //AreaList为对象，对象的遍历，请自行查阅资料
+</script>
+<script>
+    // 获取页面当前的位置，放置刷新再次回到顶部
+    var x = window.pageXOffset
+    var y = window.pageYOffset
+    // 被删除专辑
+    var dlt = undefined
+    // 用户所选区域
+    var area = 1
+    // 一行显示几个专辑
+    var num = parseInt((document.querySelector(".albumBox").clientWidth) / 250)
+    //导入按钮
+    function createButton() {
+        for (var key in AreaList) {
+            let button = document.createElement("button")
+            button.innerText = AreaList[key]
+            button.className = "choose";
+            document.querySelector(".head").appendChild(button)
+        }
+        let button = document.querySelector(".choose")
+        button.style = "color: #ffffff; background: #62bf82;"
+    }
+    // 读取localStorage数据
+    function readLocalStorage() {
+        dlt = localStorage.getItem('dlt')
+        if (dlt == null) {
+            dlt = []
+            localStorage.setItem('dlt', JSON.stringify(dlt))
+        } else {
+            dlt = JSON.parse(dlt)
+        }
+    }
+    // 构建布局
+    function build() {
+        const item = document.querySelector(".albumBox")
+        while (item.firstChild) {
+            item.removeChild(item.firstChild)
+        }
+        // 显示四行专辑，每行专辑根据窗口大小决定
+        for (var i = 0; i < 4; i++) {
+            for (var j = 0; j < num; j++) {
+                // 一个专辑，其中放了三个盒子：有背景的按钮盒子、黑体字盒子、灰体字盒子。
+                let box = document.createElement("div")
+                box.className = "album"
+                // 有图片的按钮盒子：其中又背景图片和一个按钮
+                let box1 = document.createElement("div")
+                let cover = document.createElement("img")
+                let button = document.createElement("button")
+                box1.appendChild(cover)
+                box1.appendChild(button)
+                // 黑体字段落
+                let lineOne = document.createElement("p")
+                // 灰体字段落
+                let lineTwo = document.createElement("p")
+                lineTwo.className = "lineTwo"
+                // 放入专辑中
+                box.appendChild(box1)
+                box.appendChild(lineOne)
+                box.appendChild(lineTwo)
+                // 放入存储专辑的盒子中
+                document.querySelector(".albumBox").appendChild(box)
+            }
+        }
+    }
+    // 更新专 辑
+    function show() {
+        // 得到所有专辑盒子
+        var items = document.querySelectorAll(".album")
+        // 挑选符合条件的专辑
+        var albums = DataList.filter((item) => item.area == area && dlt.indexOf(item.id.toString(10)) == -1);
+        // 更新专辑内容
+        for (var i = 0; i < 4; i++) {
+            for (var j = 0; j < num; j++) {
+                // 专辑数目不够则将之后盒子置为空
+                if (i * num + j >= albums.length) {
+                    // 更新其中的三个盒子：有背景的按钮盒子、黑体字盒子、灰体字盒子.
+                    items[i * num + j].style = "display:none"
+                    continue
+                }
+                items[i * num + j].style = "display:"
+                // 更新其中的三个盒子：有背景的按钮盒子、黑体字盒子、灰体字盒子.
+                items[i * num + j].childNodes[0].style = "position: relative;"
+                items[i * num + j].childNodes[0].childNodes[0].src = albums[i * num + j].cover
+                items[i * num + j].childNodes[0].childNodes[0].style = "width:100%;"
+                items[i * num + j].childNodes[0].childNodes[1].className = "dlt"
+                items[i * num + j].childNodes[0].childNodes[1].style = "background-image: url(./assets/del.png)"
+                items[i * num + j].childNodes[0].childNodes[1].setAttribute("id", albums[i * num + j].id)
+                // 黑体字盒子
+                items[i * num + j].childNodes[1].innerText = albums[i * num + j].name
+                items[i * num + j].childNodes[1].style = "lineOne"
+                // 灰体字盒子
+                items[i * num + j].childNodes[2].innerText = albums[i * num + j].singer + "\n" + albums[i * num + j].release_time
+                items[i * num + j].childNodes[2].style = "lineTwo"
+            }
+        }
+        window.scrollTo(x, y)
+    }
+    // 页面初始化
+    function init() {
+        if (num == 0) num = 1
+        createButton()
+        readLocalStorage()
+        build()
+        show()
+    }
+    // 专辑类型选择
+    function changeAlbum(event) {
+        x = window.pageXOffset
+        y = window.pageYOffset
+        if (event.target.className == "choose") {
+            var buttons = document.querySelectorAll(".choose")
+            for (var i = 0; i < buttons.length; i++) {
+                if (buttons[i].innerText == AreaList[area - 1]) {
+                    buttons[i].style = "color: #000000; background: #f6f6f6;"
+                    break
+                }
+            }
+            event.target.style = "color: #ffffff; background: #62bf82;"
+            area = parseInt(Object.keys(AreaList).find(key => AreaList[key] == event.target.innerText)) + 1
+            show()
+        }
+        window.scrollTo(x, y)
+    }
+    // 删除专辑
+    function deleteAlbumBox(event) {
+        x = window.pageXOffset
+        y = window.pageYOffset
+        if (event.target.className == "dlt") {
+            dlt.push(event.target.id)
+            localStorage.setItem('dlt', JSON.stringify(dlt))
+            show()
+        }
+        return false
+        window.scrollTo(x, y)
+    }
+    // 重构布局
+    function reBuild() {
+        x = window.pageXOffset
+        y = window.pageYOffset
+        if (num != parseInt((document.querySelector(".albumBox").clientWidth) / 250)) {
+            num = parseInt((document.querySelector(".albumBox").clientWidth) / 250)
+            if (num == 0) num = 1
+            console.log(num)
+            build()
+            show()
+        }
+        window.scrollTo(x, y)
+    }
+    // 菜单按钮被点击事件监听
+    document.querySelector(".head").addEventListener("click", changeAlbum, false)
+    // 窗口大小变换事件（不同窗口大小每行显示不同专辑数量）
+    window.addEventListener("resize", reBuild)
+    // 删除按钮被点击事件监听
+    document.querySelector(".albumBox").addEventListener("click", deleteAlbumBox)
+    // 初始化
+    init()
+</script>
+
+</html>

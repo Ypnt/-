@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice1</title>
+</head>
+<body>
+    <button onclick="create()">create three div</button>
+    <button onclick="deleteDom()">delete all div</button>
+
+    <script>
+        function create(){
+            for(let i=0;i<3;i++){
+                console.log(i)
+                let div=document.createElement("div")
+                div.innerText="this is div"+i
+                document.body.appendChild(div)
+            }
+        }
+        function deleteDom(){
+            let divs=document.body.querySelectorAll("div")
+            divs.forEach(element => {
+                element.remove()
+            });
+        }
+    </script>
+</body>
+</html>
